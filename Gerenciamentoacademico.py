@@ -43,7 +43,7 @@ def menu_principal():
 def incluir_disciplinas():
     disciplinas = ler_arquivo('disciplines.json')
     while True:
-        #usamos a tratativas de excessões para se caso o usuário digite um valor inválido ou, por exemplo, digite uma tecla (enter).
+        #usamos a tratativas de excessões para, caso o usuário digite um valor inválido, ou por exemplo, digite uma tecla (enter).
         try:
             codigo_disciplina = int(input('Digite o código da disciplina: '))
         except ValueError:
@@ -51,25 +51,24 @@ def incluir_disciplinas():
             continue
         # Verificamos se o código que o usuário digitou já está cadastrado, percorrendo a lista de disciplinas e comparando os valores. 
         for disciplina in disciplinas:
-            # Se o código que for inserido pelo usuário, armazenado na variável (codigo_disciplina), for igual(==), ao que já temos armazenado na lista:
+            # Se o código que for inserido pelo usuário armazenado na variável (codigo_disciplina), for igual(==), ao que já temos armazenado na lista:
             if disciplina['codigo'] == codigo_disciplina:
                 print('Disciplina já cadastrada!') #Essa mensagem irá ser impressa na tela para o usuário e:
                 break # O comando break irá parar o processo do código.
         
         # 'Se-não', se o código for de uma nova disciplina, vamos dar continuidade na inclusão.
         else: 
-            # Pdiremos o nome da nova disciplina:
+            # Pediremos o nome da nova disciplina:
             nome = str(input('Digite o nome da disciplina'))
-            # Então criaremos um dicionário que irá armazenar pares de chave-valor, contendo o código digitado e o nome que pedimos anteiormente. 
+            # Então criaremos um dicionário que irá armazenar pares de chave-valor contendo o código digitado e o nome que pedimos anteiormente. 
             nova_disciplina = {'codigo': codigo_disciplina,
-                           'nome': nome
-            }
+                           'nome': nome}
             # Feito o discionário, agora iremos "jogar"/"colocar" ou "inserir" esse discionário à nossa lista, onde será armazenado os valores. 
             # Pois podemos precisar desses valores para atualizar, excluir ou listar.
             
             disciplinas.append(nova_disciplina)
             # Ao adicionarmos o discionário na lista de disciplinas, agora salvaremos essas informações em arquivo.
-            salvar_arquivos(disciplinas, 'disciplines.json')
+            salvar_arquivos(disciplinas, 'disciplinas.json')
             print('Disciplina cadastrada com sucesso!')
         # Criamos uma nova variável que irá servir apenas para armazenar um valor. Esse valor será comparado. Vamos perguntar ao usuário se ele pretende continuar adicionando mais disciplinas. 
         #Se o valor que for inserido for igual(==) ao valor que é pra parar de cadastrar 'n', então o break irá interromper o fluxo da execução.
